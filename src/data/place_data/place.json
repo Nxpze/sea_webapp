@@ -1,0 +1,33 @@
+{
+  "place_data1": [
+    {
+      "title": "ที่พัก",
+      "places": [
+        {
+          "time": "09:00",
+          "name": "โรงแรม Tevan Jomtien Pattaya",
+          "mapUrl": "https://maps.app.goo.gl/SeQdxzvCFDDz7Jq46",
+          "lat": 12.890367760311113,
+          "lng": 100.88766352354043,
+          "note": "ที่พักที่สะดวกสบายและใกล้ชายหาด"
+        }
+      ]
+    }
+  ],
+  
+  "place_data2": [
+    {
+      "title": "สถานที่เที่ยว",
+      "places": [
+        {
+          "time": "09:00",
+          "name": "หาดจอมเทียน",
+          "mapUrl": "https://maps.app.goo.gl/CHM1CtcCQpjhuzhM6",
+          "lat": 12.886536744111103,
+          "lng": 100.87748314204266,
+          "note": "นั่งเล่นช่วงเย็นดูพระอาทิตย์ตกแค่คิดก็ฟินแล้ว"
+        }
+      ]
+    }
+  ]
+}
