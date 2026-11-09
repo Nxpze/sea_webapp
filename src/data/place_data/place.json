@@ -5,26 +5,28 @@
       "places": [
         {
           "time": "09:00",
-          "name": "โรงแรม Tevan Jomtien Pattaya",
-          "mapUrl": "https://maps.app.goo.gl/SeQdxzvCFDDz7Jq46",
-          "lat": 12.890367760311113,
-          "lng": 100.88766352354043,
-          "note": "ที่พักที่สะดวกสบายและใกล้ชายหาด"
+          "name": "ชลิตา กู๊ดวิว",
+          "mapUrl": "https://maps.app.goo.gl/ZfTXBdAXYt9ib1pr5",
+          "lat": 12.927235704025033,
+          "lng": 100.78555745399427,
+          "price": "990 บาท/คืน",
+          "note": "อันนี้ที่พักเบื้องต้นเห็นราคาถูกดี"
         }
       ]
     }
   ],
-  
+
   "place_data2": [
     {
-      "title": "สถานที่เที่ยว",
+      "title": "สถานที่เที่ยวหลัก",
       "places": [
         {
-          "time": "09:00",
-          "name": "หาดจอมเทียน",
-          "mapUrl": "https://maps.app.goo.gl/CHM1CtcCQpjhuzhM6",
-          "lat": 12.886536744111103,
-          "lng": 100.87748314204266,
+          "time": "ทั้งวัน",
+          "name": "เกาะล้าน",
+          "mapUrl": "https://maps.app.goo.gl/7t1YWUuHURgrhvRq7",
+          "lat": 12.922973188713504, 
+          "lng": 100.78880893439668,
+          "price": "ฟรี",
           "note": "นั่งเล่นช่วงเย็นดูพระอาทิตย์ตกแค่คิดก็ฟินแล้ว"
         }
       ]
