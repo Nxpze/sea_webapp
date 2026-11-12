@@ -4,10 +4,23 @@
  * Strict adherence to style-guide.md and AI-build-guide-final.md
  */
 
+// Default members list from database (ensures dropdown is never empty even during cold starts or offline)
+const DEFAULT_FRIENDS = [
+  { f_id: 'F01', name: 'ส้มเส้ม' },
+  { f_id: 'F02', name: 'น้องเห็ด' },
+  { f_id: 'F03', name: 'นพรัด' },
+  { f_id: 'F04', name: 'เฟริน' },
+  { f_id: 'F05', name: 'นัท' },
+  { f_id: 'F06', name: 'โชค' },
+  { f_id: 'F07', name: 'นิววี่' },
+  { f_id: 'F08', name: 'กรีนสีเขียว' },
+  { f_id: 'F09', name: 'อ๋อมแอ๋ม' }
+];
+
 // Application State
 const state = {
   user: null, // Logged in user: { f_id, name }
-  friends: [],
+  friends: DEFAULT_FRIENDS,
   trip: null,
   itinerary: [],
   places: [],
@@ -184,27 +197,34 @@ function toggleTheme() {
 async function initApp() {
   applyTheme(state.theme);
 
+  // 1. Load latest friends list from DB (fallback to DEFAULT_FRIENDS if offline)
   try {
-    // 1. Check current session
-    const meRes = await api('/auth/me');
-    if (meRes.authenticated && meRes.user) {
-      state.user = meRes.user;
-    }
-
-    // 2. Load members list
     const friendsRes = await api('/auth/friends');
-    state.friends = friendsRes.friends || [];
-
-    if (!state.user) {
-      renderLoginScreen();
-    } else {
-      await loadInitialData();
-      renderApp();
+    if (friendsRes && friendsRes.friends && friendsRes.friends.length > 0) {
+      state.friends = friendsRes.friends;
     }
   } catch (err) {
-    console.error('Initialization error:', err);
-    renderLoginScreen();
+    console.warn('Could not fetch friends list from API, using default list:', err);
+    if (!state.friends || state.friends.length === 0) {
+      state.friends = DEFAULT_FRIENDS;
+    }
   }
+
+  // 2. Check current session status
+  try {
+    const meRes = await api('/auth/me');
+    if (meRes && meRes.authenticated && meRes.user) {
+      state.user = meRes.user;
+      await loadInitialData();
+      renderApp();
+      return;
+    }
+  } catch (err) {
+    console.warn('Session check error:', err);
+  }
+
+  // If not logged in, render login screen with full friends dropdown
+  renderLoginScreen();
 }
 
 async function loadInitialData() {

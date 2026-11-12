@@ -1139,6 +1139,82 @@ exports.handler = async (event, context) => {
       }
     }
 
+    // POST /api/finance/replace-slip -> replace slip with audit log
+    if (method === 'POST' && path === '/finance/replace-slip') {
+      const { entity_type, entity_id, slip_file, original_filename, mime_type } = parseBody(event);
+      if (!entity_type || !entity_id || !slip_file) {
+        return sendResponse(400, { ok: false, error: 'ข้อมูลไม่ครบถ้วน กรุณาเลือกไฟล์สลิปใหม่นะ' });
+      }
+
+      let tableName = '';
+      let idCol = '';
+      let urlCol = '';
+      let ownerCol = '';
+      let folder = '';
+
+      if (entity_type === 'central_fund') {
+        tableName = 'central_fund';
+        idCol = 'slips_id';
+        urlCol = 'url_c';
+        ownerCol = 'f_id';
+        folder = 'central_fund';
+      } else if (entity_type === 'expense') {
+        tableName = 'expenses';
+        idCol = 'expenses_id';
+        urlCol = 'url_e';
+        ownerCol = 'f_id';
+        folder = 'expenses';
+      } else if (entity_type === 'settlement') {
+        tableName = 'settlement';
+        idCol = 'settlement_id';
+        urlCol = 'url_s';
+        ownerCol = 'tranfer_f';
+        folder = 'settlements';
+      } else {
+        return sendResponse(400, { ok: false, error: 'ประเภทรายการไม่ถูกต้อง' });
+      }
+
+      // Check existence & ownership
+      const checkRes = await db.query(`SELECT * FROM ${tableName} WHERE TRIM(${idCol}) = $1`, [entity_id.trim()]);
+      if (checkRes.rows.length === 0) {
+        return sendResponse(404, { ok: false, error: 'ไม่พบรายการที่ต้องการเปลี่ยนสลิป' });
+      }
+      const record = checkRes.rows[0];
+      if (record[ownerCol].trim() !== user.f_id) {
+        return sendResponse(403, { ok: false, error: 'เฉพาะเจ้าของรายการเท่านั้นที่สามารถเปลี่ยนสลิปได้นะ' });
+      }
+
+      if (record.is_void) {
+        return sendResponse(400, { ok: false, error: 'รายการที่ยกเลิกไปแล้วไม่สามารถเปลี่ยนสลิปได้' });
+      }
+
+      const oldPath = record[urlCol] ? record[urlCol].trim() : null;
+
+      // Upload new slip
+      const fileBuffer = Buffer.from(slip_file, 'base64');
+      const newStoragePath = await storage.uploadSlip(fileBuffer, original_filename || 'new_slip.jpg', mime_type || 'image/jpeg', folder);
+
+      // Update DB
+      await db.query(`UPDATE ${tableName} SET ${urlCol} = $1 WHERE TRIM(${idCol}) = $2`, [newStoragePath, entity_id.trim()]);
+
+      // Record Audit Log (event_type: 'replace_slip')
+      await db.query(
+        `INSERT INTO audit_logs (entity_type, entity_id, event_type, actor_f_id, old_values, new_values, reason)
+         VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+        [
+          entity_type,
+          entity_id.trim(),
+          'replace_slip',
+          user.f_id,
+          JSON.stringify({ old_slip_path: oldPath }),
+          JSON.stringify({ new_slip_path: newStoragePath }),
+          'สมาชิกเปลี่ยนไฟล์สลิปใหม่'
+        ]
+      );
+
+      return sendResponse(200, { ok: true, message: 'เปลี่ยนสลิปเรียบร้อยแล้ว' });
+    }
+
     // ==========================================
     // 10. AUDIT LOGS
     // ==========================================
