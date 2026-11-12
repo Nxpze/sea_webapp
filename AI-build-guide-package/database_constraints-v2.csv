@@ -1,0 +1,17 @@
+table_name,constraint_name,constraint_type,column_name,referenced_table_name,referenced_column_name,check_clause
+central_fund,2200_16389_1_not_null,CHECK,(NULL),(NULL),(NULL),slips_id IS NOT NULL
+central_fund,central_fund_pkey,PRIMARY KEY,slips_id,central_fund,slips_id,(NULL)
+expenses,2200_16394_1_not_null,CHECK,(NULL),(NULL),(NULL),expenses_id IS NOT NULL
+expenses,expenses_pkey,PRIMARY KEY,expenses_id,expenses,expenses_id,(NULL)
+expenses_split,2200_16399_1_not_null,CHECK,(NULL),(NULL),(NULL),expenses_split_id IS NOT NULL
+expenses_split,expenses_split_pkey,PRIMARY KEY,expenses_split_id,expenses_split,expenses_split_id,(NULL)
+friends,2200_16384_1_not_null,CHECK,(NULL),(NULL),(NULL),f_id IS NOT NULL
+friends,friends_pkey,PRIMARY KEY,f_id,friends,f_id,(NULL)
+settlement,2200_16404_1_not_null,CHECK,(NULL),(NULL),(NULL),settlement_id IS NOT NULL
+settlement,settlement_pkey,PRIMARY KEY,settlement_id,settlement,settlement_id,(NULL)
+trip_settings,2200_16413_1_not_null,CHECK,(NULL),(NULL),(NULL),setting_id IS NOT NULL
+trip_settings,2200_16413_4_not_null,CHECK,(NULL),(NULL),(NULL),updated_at IS NOT NULL
+trip_settings,trip_settings_single_row,CHECK,(NULL),trip_settings,setting_id,((setting_id = 1))
+trip_settings,trip_settings_valid_dates,CHECK,(NULL),trip_settings,trip_end_date,((((trip_start_date IS NULL) AND (trip_end_date IS NULL)) OR ((trip_start_date IS NOT NULL) AND (trip_end_date IS NOT NULL) AND (trip_start_date <= trip_end_date))))
+trip_settings,trip_settings_valid_dates,CHECK,(NULL),trip_settings,trip_start_date,((((trip_start_date IS NULL) AND (trip_end_date IS NULL)) OR ((trip_start_date IS NOT NULL) AND (trip_end_date IS NOT NULL) AND (trip_start_date <= trip_end_date))))
+trip_settings,trip_settings_pkey,PRIMARY KEY,setting_id,trip_settings,setting_id,(NULL)

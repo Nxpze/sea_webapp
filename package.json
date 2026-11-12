@@ -1,0 +1,25 @@
+{
+  "name": "sea-webapp",
+  "version": "1.0.0",
+  "description": "Group beach trip planning and finance web application",
+  "main": "netlify/functions/api.js",
+  "scripts": {
+    "start": "node scripts/dev-server.js",
+    "dev": "node scripts/dev-server.js",
+    "netlify:dev": "netlify dev",
+    "test:db": "node scripts/test-db.js",
+    "test:supa": "node scripts/test-supa.js",
+    "test:api": "node scripts/test-api.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.6",
+    "bcryptjs": "^2.4.3",
+    "cookie": "^0.6.0",
+    "dotenv": "^16.4.5",
+    "pg": "^8.13.0",
+    "ws": "^8.22.2"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.37.2"
+  }
+}
