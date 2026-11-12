@@ -23,7 +23,7 @@ async function testApi() {
     },
     body: JSON.stringify({
       f_id: 'F01',
-      password: 'ideal_sea_051211'
+      password: process.env.SHARED_PASSWORD
     })
   });
   console.log('2. /api/auth/login status:', res.statusCode);
