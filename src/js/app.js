@@ -499,19 +499,19 @@ async function renderDashboard(container) {
         <span class="badge badge-accent">ส่วนตัว</span>
       </div>
       <div class="stats-grid">
-        <div class="stat-card glass" style="background: var(--color-surface);">
+        <div class="stat-card glass">
           <span class="stat-label">ฉันสมทบกองกลาง</span>
           <span class="stat-val stat-val-primary">฿${formatMoney(finance?.mySummary?.centralFundPaid || 0)}</span>
         </div>
-        <div class="stat-card glass" style="background: var(--color-surface);">
+        <div class="stat-card glass">
           <span class="stat-label">ฉันสำรองจ่ายไป</span>
           <span class="stat-val stat-val-primary">฿${formatMoney(finance?.mySummary?.expensesPaid || 0)}</span>
         </div>
-        <div class="stat-card glass" style="background: var(--color-surface);">
+        <div class="stat-card glass">
           <span class="stat-label">หนี้ที่ฉันต้องจ่ายคนอื่น</span>
           <span class="stat-val ${finance?.mySummary?.debtsToPay > 0 ? 'stat-val-accent' : ''}">฿${formatMoney(finance?.mySummary?.debtsToPay || 0)}</span>
         </div>
-        <div class="stat-card glass" style="background: var(--color-surface);">
+        <div class="stat-card glass">
           <span class="stat-label">คนอื่นค้างจ่ายฉัน</span>
           <span class="stat-val" style="color: var(--color-success);">฿${formatMoney(finance?.mySummary?.debtsToReceive || 0)}</span>
         </div>
@@ -528,11 +528,11 @@ async function renderDashboard(container) {
         <button class="btn btn-sm btn-secondary" onclick="switchTab('finance')">ดูทั้งหมด</button>
       </div>
       <div class="stats-grid">
-        <div class="stat-card glass" style="background: var(--color-surface);">
+        <div class="stat-card glass">
           <span class="stat-label">ยอดเงินกองกลางรวม</span>
           <span class="stat-val stat-val-primary">฿${formatMoney(finance?.centralFundTotal || 0)}</span>
         </div>
-        <div class="stat-card glass" style="background: var(--color-surface);">
+        <div class="stat-card glass">
           <span class="stat-label">ค่าใช้จ่ายรวมทั้งหมด</span>
           <span class="stat-val stat-val-primary">฿${formatMoney(finance?.expensesTotal || 0)}</span>
         </div>
@@ -811,19 +811,19 @@ async function renderFinanceOverviewSub(container) {
   container.innerHTML = `
     <!-- Top Summary Stats -->
     <div class="stats-grid">
-      <div class="stat-card glass" style="background: var(--color-surface);">
+      <div class="stat-card glass">
         <span class="stat-label">ยอดเงินกองกลางสะสม</span>
         <span class="stat-val stat-val-primary">฿${formatMoney(data.centralFundTotal)}</span>
       </div>
-      <div class="stat-card glass" style="background: var(--color-surface);">
+      <div class="stat-card glass">
         <span class="stat-label">ค่าใช้จ่ายรวมทั้งหมด</span>
         <span class="stat-val stat-val-primary">฿${formatMoney(data.expensesTotal)}</span>
       </div>
-      <div class="stat-card glass" style="background: var(--color-surface);">
+      <div class="stat-card glass">
         <span class="stat-label">ยอดหนี้ค้างชำระรวม</span>
         <span class="stat-val ${data.totalDebt > 0 ? 'stat-val-accent' : ''}">฿${formatMoney(data.totalDebt)}</span>
       </div>
-      <div class="stat-card glass" style="background: var(--color-surface);">
+      <div class="stat-card glass">
         <span class="stat-label">จำนวนสมาชิกในทริป</span>
         <span class="stat-val">${data.centralFundByMember.length} คน</span>
       </div>
@@ -924,7 +924,7 @@ async function renderCentralFundSub(container) {
         <p>แตะปุ่มด้านบนเพื่อส่งสลิปเติมเงินกองกลางคนแรกกันเลยนะ!</p>
       </div>
     ` : `
-      <div style="display: flex; flex-direction: column; gap: 12px;">
+      <div class="finance-list">
         ${state.centralFund.map(item => `
           <div class="card glass" style="${item.is_void ? 'opacity: 0.6;' : ''}">
             <div style="display: flex; justify-content: space-between; align-items: flex-start;">
@@ -993,7 +993,7 @@ async function renderExpensesSub(container) {
         <p>เมื่อมีใครสำรองจ่ายค่าอาหารหรือค่ากิจกรรม สามารถบันทึกที่นี่ได้เลยนะ</p>
       </div>
     ` : `
-      <div style="display: flex; flex-direction: column; gap: 12px;">
+      <div class="finance-list">
         ${state.expenses.map(exp => `
           <div class="card glass" style="${exp.is_void ? 'opacity: 0.6;' : ''}">
             <div style="display: flex; justify-content: space-between; align-items: flex-start;">
@@ -1086,7 +1086,7 @@ async function renderDebtSub(container) {
         <p>ทุกคนเคลียร์หนี้เรียบร้อย หรือยังไม่มีการแบ่งค่าใช้จ่ายจ้า</p>
       </div>
     ` : `
-      <div style="display: flex; flex-direction: column; gap: 12px;">
+      <div class="finance-list">
         ${state.debtPairs.map(pair => {
           const isMyDebt = pair.debtor_id === state.user.f_id;
           const isMyCredit = pair.creditor_id === state.user.f_id;
@@ -1165,7 +1165,7 @@ async function renderRepaymentsSub(container) {
         <p>เมื่อมีการชำระหนี้และแนบสลิป ประวัติจะแสดงที่นี่นะ</p>
       </div>
     ` : `
-      <div style="display: flex; flex-direction: column; gap: 12px;">
+      <div class="finance-list">
         ${state.repayments.map(item => `
           <div class="card glass" style="${item.is_void ? 'opacity: 0.6;' : ''}">
             <div style="display: flex; justify-content: space-between; align-items: flex-start;">

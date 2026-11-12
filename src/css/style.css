@@ -37,13 +37,17 @@
   --shadow-sm: 0 1px 2px rgba(15, 42, 51, 0.06);
   --shadow-md: 0 2px 4px rgba(15, 42, 51, 0.05), 0 6px 16px rgba(15, 42, 51, 0.07);
 
-  /* Glassmorphism โหมดสว่าง */
-  --glass-bg: rgba(255, 255, 255, 0.65);
-  --glass-bg-strong: rgba(255, 255, 255, 0.85);
-  --glass-border: rgba(255, 255, 255, 0.75);
-  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.80);
-  --glass-shadow: 0 8px 32px rgba(8, 145, 178, 0.14);
-  --glass-blur: 16px;
+  /* Glassmorphism โหมดสว่าง: ปรับให้มีความใส ชัดเจน และโปร่งแสงมากขึ้นตามคำขอ */
+  --glass-bg: rgba(255, 255, 255, 0.38);
+  --glass-bg-strong: rgba(255, 255, 255, 0.60);
+  --glass-border: rgba(255, 255, 255, 0.55);
+  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.70);
+  --glass-shadow: 0 8px 32px rgba(8, 145, 178, 0.12);
+  --glass-blur: 14px;
+
+  /* พื้นหลังภาพทะเล sea_background.jpg พร้อม Overlay อ่อนๆ ให้อ่านง่าย */
+  --bg-overlay-light: linear-gradient(135deg, rgba(246, 251, 252, 0.40) 0%, rgba(224, 244, 248, 0.35) 100%);
+  --bg-overlay-dark: linear-gradient(135deg, rgba(11, 31, 42, 0.72) 0%, rgba(17, 48, 61, 0.68) 100%);
 
   /* พื้นหลังหน้า: วงสีไล่เฉดให้กระจกเบลอ */
   --page-bg:
@@ -77,11 +81,12 @@
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
     --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35);
 
-    --glass-bg: rgba(17, 48, 61, 0.65);
-    --glass-bg-strong: rgba(17, 48, 61, 0.85);
-    --glass-border: rgba(255, 255, 255, 0.12);
-    --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    --glass-bg: rgba(17, 48, 61, 0.42);
+    --glass-bg-strong: rgba(17, 48, 61, 0.65);
+    --glass-border: rgba(255, 255, 255, 0.16);
+    --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.12);
     --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.40);
+    --glass-blur: 14px;
 
     --page-bg:
       radial-gradient(circle at 12% 8%, rgba(34, 195, 224, 0.22), transparent 45%),
@@ -109,16 +114,12 @@ body.theme-dark {
   --color-warning-soft: rgba(234, 179, 8, 0.16);
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35);
-  --glass-bg: rgba(17, 48, 61, 0.65);
-  --glass-bg-strong: rgba(17, 48, 61, 0.85);
-  --glass-border: rgba(255, 255, 255, 0.12);
-  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(17, 48, 61, 0.42);
+  --glass-bg-strong: rgba(17, 48, 61, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.16);
+  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.12);
   --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.40);
-  --page-bg:
-    radial-gradient(circle at 12% 8%, rgba(34, 195, 224, 0.22), transparent 45%),
-    radial-gradient(circle at 88% 18%, rgba(251, 146, 60, 0.14), transparent 40%),
-    radial-gradient(circle at 50% 95%, rgba(8, 145, 178, 0.26), transparent 50%),
-    var(--color-bg);
+  --glass-blur: 14px;
 }
 
 body.theme-light {
@@ -138,20 +139,16 @@ body.theme-light {
   --color-warning-soft: #FEF9C3;
   --shadow-sm: 0 1px 2px rgba(15, 42, 51, 0.06);
   --shadow-md: 0 2px 4px rgba(15, 42, 51, 0.05), 0 6px 16px rgba(15, 42, 51, 0.07);
-  --glass-bg: rgba(255, 255, 255, 0.65);
-  --glass-bg-strong: rgba(255, 255, 255, 0.85);
-  --glass-border: rgba(255, 255, 255, 0.75);
-  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.80);
-  --glass-shadow: 0 8px 32px rgba(8, 145, 178, 0.14);
-  --page-bg:
-    radial-gradient(circle at 12% 8%, rgba(8, 145, 178, 0.30), transparent 45%),
-    radial-gradient(circle at 88% 18%, rgba(249, 115, 22, 0.20), transparent 40%),
-    radial-gradient(circle at 50% 95%, rgba(34, 195, 224, 0.24), transparent 50%),
-    var(--color-bg);
+  --glass-bg: rgba(255, 255, 255, 0.38);
+  --glass-bg-strong: rgba(255, 255, 255, 0.60);
+  --glass-border: rgba(255, 255, 255, 0.55);
+  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.70);
+  --glass-shadow: 0 8px 32px rgba(8, 145, 178, 0.12);
+  --glass-blur: 14px;
 }
 
 /* ==========================================================================
-   Base Elements
+   Base Elements & Full Sea Background Image
    ========================================================================== */
 
 * {
@@ -161,7 +158,12 @@ body.theme-light {
 body {
   margin: 0;
   padding: 0;
-  background: var(--page-bg);
+  background-image: 
+    var(--bg-overlay-light),
+    url('/data/pic/sea_background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   background-attachment: fixed;
   min-height: 100vh;
   color: var(--color-text);
@@ -170,6 +172,26 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-image: 
+      var(--bg-overlay-dark),
+      url('/data/pic/sea_background.jpg');
+  }
+}
+
+body.theme-dark {
+  background-image: 
+    linear-gradient(135deg, rgba(11, 31, 42, 0.72) 0%, rgba(17, 48, 61, 0.68) 100%),
+    url('/data/pic/sea_background.jpg') !important;
+}
+
+body.theme-light {
+  background-image: 
+    linear-gradient(135deg, rgba(246, 251, 252, 0.40) 0%, rgba(224, 244, 248, 0.35) 100%),
+    url('/data/pic/sea_background.jpg') !important;
 }
 
 h1, h2, h3, h4, p {
@@ -850,20 +872,42 @@ a {
 }
 
 /* ==========================================================================
+   Finance Views & Spacing (Adjusted to give ample breathing room)
+   ========================================================================== */
+
+#finance-sub-content {
+  display: flex;
+  flex-direction: column;
+  gap: 26px; /* ระยะห่างระหว่างบล็อกในหน้าการเงินให้โปร่งสบายตา ไม่ติดกัน */
+  margin-top: 14px;
+}
+
+.finance-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* ระยะห่างระหว่างการ์ดธุรกรรม */
+}
+
+/* ==========================================================================
    Summary Stat Grid
    ========================================================================== */
 
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+  gap: 16px;
 }
 
 .stat-card {
-  padding: 16px;
+  padding: 18px 16px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
 }
 
 .stat-label {
