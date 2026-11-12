@@ -65,7 +65,7 @@ npm run dev
 
 เปิดเบราว์เซอร์ไปที่: `http://localhost:8888`
 
-* **รหัสผ่านกลาง (Shared Password):** กำหนดไว้ใน `.env` (ค่าเริ่มต้น: `ideal_sea_051211`)
+* **รหัสผ่านกลาง (Shared Password):** กำหนดไว้ใน `.env` (ค่าเริ่มต้น: `fuck_me_harder`)
 
 ---
 
