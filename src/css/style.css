@@ -37,17 +37,17 @@
   --shadow-sm: 0 1px 2px rgba(15, 42, 51, 0.06);
   --shadow-md: 0 2px 4px rgba(15, 42, 51, 0.05), 0 6px 16px rgba(15, 42, 51, 0.07);
 
-  /* Glassmorphism โหมดสว่าง: ปรับให้มีความใส ชัดเจน และโปร่งแสงมากขึ้นตามคำขอ */
-  --glass-bg: rgba(255, 255, 255, 0.38);
-  --glass-bg-strong: rgba(255, 255, 255, 0.60);
-  --glass-border: rgba(255, 255, 255, 0.55);
-  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.70);
-  --glass-shadow: 0 8px 32px rgba(8, 145, 178, 0.12);
-  --glass-blur: 14px;
+  /* Glassmorphism โหมดสว่าง: ปรับความใสให้หนาแน่นเพียง 30% ตามคำขอ */
+  --glass-bg: rgba(255, 255, 255, 0.30);
+  --glass-bg-strong: rgba(255, 255, 255, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.40);
+  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.50);
+  --glass-shadow: 0 8px 32px rgba(8, 145, 178, 0.10);
+  --glass-blur: 12px;
 
   /* พื้นหลังภาพทะเล sea_background.jpg พร้อม Overlay อ่อนๆ ให้อ่านง่าย */
-  --bg-overlay-light: linear-gradient(135deg, rgba(246, 251, 252, 0.40) 0%, rgba(224, 244, 248, 0.35) 100%);
-  --bg-overlay-dark: linear-gradient(135deg, rgba(11, 31, 42, 0.72) 0%, rgba(17, 48, 61, 0.68) 100%);
+  --bg-overlay-light: linear-gradient(135deg, rgba(246, 251, 252, 0.30) 0%, rgba(224, 244, 248, 0.25) 100%);
+  --bg-overlay-dark: linear-gradient(135deg, rgba(11, 31, 42, 0.70) 0%, rgba(17, 48, 61, 0.65) 100%);
 
   /* พื้นหลังหน้า: วงสีไล่เฉดให้กระจกเบลอ */
   --page-bg:
@@ -81,12 +81,12 @@
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
     --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35);
 
-    --glass-bg: rgba(17, 48, 61, 0.42);
-    --glass-bg-strong: rgba(17, 48, 61, 0.65);
-    --glass-border: rgba(255, 255, 255, 0.16);
-    --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    --glass-bg: rgba(17, 48, 61, 0.30);
+    --glass-bg-strong: rgba(17, 48, 61, 0.45);
+    --glass-border: rgba(255, 255, 255, 0.14);
+    --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.10);
     --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.40);
-    --glass-blur: 14px;
+    --glass-blur: 12px;
 
     --page-bg:
       radial-gradient(circle at 12% 8%, rgba(34, 195, 224, 0.22), transparent 45%),
@@ -114,12 +114,12 @@ body.theme-dark {
   --color-warning-soft: rgba(234, 179, 8, 0.16);
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35);
-  --glass-bg: rgba(17, 48, 61, 0.42);
-  --glass-bg-strong: rgba(17, 48, 61, 0.65);
-  --glass-border: rgba(255, 255, 255, 0.16);
-  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  --glass-bg: rgba(17, 48, 61, 0.30);
+  --glass-bg-strong: rgba(17, 48, 61, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.10);
   --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.40);
-  --glass-blur: 14px;
+  --glass-blur: 12px;
 }
 
 body.theme-light {
@@ -139,12 +139,12 @@ body.theme-light {
   --color-warning-soft: #FEF9C3;
   --shadow-sm: 0 1px 2px rgba(15, 42, 51, 0.06);
   --shadow-md: 0 2px 4px rgba(15, 42, 51, 0.05), 0 6px 16px rgba(15, 42, 51, 0.07);
-  --glass-bg: rgba(255, 255, 255, 0.38);
-  --glass-bg-strong: rgba(255, 255, 255, 0.60);
-  --glass-border: rgba(255, 255, 255, 0.55);
-  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.70);
-  --glass-shadow: 0 8px 32px rgba(8, 145, 178, 0.12);
-  --glass-blur: 14px;
+  --glass-bg: rgba(255, 255, 255, 0.30);
+  --glass-bg-strong: rgba(255, 255, 255, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.40);
+  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.50);
+  --glass-shadow: 0 8px 32px rgba(8, 145, 178, 0.10);
+  --glass-blur: 12px;
 }
 
 /* ==========================================================================
