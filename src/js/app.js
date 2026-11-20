@@ -1270,19 +1270,25 @@ function renderMoreMenu(container) {
         วันเดินทางจะเชื่อมโยงไปยังการนับถอยหลัง, แผนเที่ยว และการพยากรณ์อากาศ
       </p>
 
-      <form id="trip-settings-form" style="margin-top: 10px;">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-          <div class="form-group">
-            <label class="form-label">วันเริ่มต้นทริป</label>
-            <input type="date" id="trip-start-date" class="form-input" value="${state.trip?.trip_start_date ? state.trip.trip_start_date.split('T')[0] : ''}" />
+      <form id="trip-settings-form" style="margin-top: 4px;">
+        <div class="trip-dates-grid">
+          <div class="trip-date-group">
+            <label class="trip-date-label" for="trip-start-date">
+              <i data-lucide="calendar"></i>
+              <span>วันเริ่มต้นทริป</span>
+            </label>
+            <input type="date" id="trip-start-date" class="form-input trip-date-input" value="${state.trip?.trip_start_date ? state.trip.trip_start_date.split('T')[0] : ''}" />
           </div>
-          <div class="form-group">
-            <label class="form-label">วันสิ้นสุดทริป</label>
-            <input type="date" id="trip-end-date" class="form-input" value="${state.trip?.trip_end_date ? state.trip.trip_end_date.split('T')[0] : ''}" />
+          <div class="trip-date-group">
+            <label class="trip-date-label" for="trip-end-date">
+              <i data-lucide="calendar-check"></i>
+              <span>วันสิ้นสุดทริป</span>
+            </label>
+            <input type="date" id="trip-end-date" class="form-input trip-date-input" value="${state.trip?.trip_end_date ? state.trip.trip_end_date.split('T')[0] : ''}" />
           </div>
         </div>
 
-        <button type="submit" class="btn btn-filled btn-sm">
+        <button type="submit" class="btn btn-filled btn-sm" style="display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px;">
           <i data-lucide="save" style="width: 16px; height: 16px;"></i>
           <span>บันทึกวันทริป</span>
         </button>

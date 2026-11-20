@@ -37,16 +37,16 @@
   --shadow-sm: 0 1px 2px rgba(15, 42, 51, 0.06);
   --shadow-md: 0 2px 4px rgba(15, 42, 51, 0.05), 0 6px 16px rgba(15, 42, 51, 0.07);
 
-  /* Glassmorphism โหมดสว่าง: ปรับความใสให้หนาแน่นเพียง 30% ตามคำขอ */
-  --glass-bg: rgba(255, 255, 255, 0.30);
-  --glass-bg-strong: rgba(255, 255, 255, 0.45);
-  --glass-border: rgba(255, 255, 255, 0.40);
-  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.50);
-  --glass-shadow: 0 8px 32px rgba(8, 145, 178, 0.10);
+  /* Glassmorphism โหมดสว่าง: ปรับความใสให้หนาแน่นเพียง 15% ตามคำขอ */
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --glass-bg-strong: rgba(255, 255, 255, 0.28);
+  --glass-border: rgba(255, 255, 255, 0.28);
+  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  --glass-shadow: 0 8px 32px rgba(8, 145, 178, 0.08);
   --glass-blur: 12px;
 
   /* พื้นหลังภาพทะเล sea_background.jpg พร้อม Overlay อ่อนๆ ให้อ่านง่าย */
-  --bg-overlay-light: linear-gradient(135deg, rgba(246, 251, 252, 0.30) 0%, rgba(224, 244, 248, 0.25) 100%);
+  --bg-overlay-light: linear-gradient(135deg, rgba(246, 251, 252, 0.25) 0%, rgba(224, 244, 248, 0.20) 100%);
   --bg-overlay-dark: linear-gradient(135deg, rgba(11, 31, 42, 0.70) 0%, rgba(17, 48, 61, 0.65) 100%);
 
   /* พื้นหลังหน้า: วงสีไล่เฉดให้กระจกเบลอ */
@@ -81,11 +81,11 @@
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
     --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35);
 
-    --glass-bg: rgba(17, 48, 61, 0.30);
-    --glass-bg-strong: rgba(17, 48, 61, 0.45);
-    --glass-border: rgba(255, 255, 255, 0.14);
-    --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.10);
-    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.40);
+    --glass-bg: rgba(17, 48, 61, 0.15);
+    --glass-bg-strong: rgba(17, 48, 61, 0.28);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
     --glass-blur: 12px;
 
     --page-bg:
@@ -114,11 +114,11 @@ body.theme-dark {
   --color-warning-soft: rgba(234, 179, 8, 0.16);
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35);
-  --glass-bg: rgba(17, 48, 61, 0.30);
-  --glass-bg-strong: rgba(17, 48, 61, 0.45);
-  --glass-border: rgba(255, 255, 255, 0.14);
-  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.10);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.40);
+  --glass-bg: rgba(17, 48, 61, 0.15);
+  --glass-bg-strong: rgba(17, 48, 61, 0.28);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
   --glass-blur: 12px;
 }
 
@@ -139,11 +139,11 @@ body.theme-light {
   --color-warning-soft: #FEF9C3;
   --shadow-sm: 0 1px 2px rgba(15, 42, 51, 0.06);
   --shadow-md: 0 2px 4px rgba(15, 42, 51, 0.05), 0 6px 16px rgba(15, 42, 51, 0.07);
-  --glass-bg: rgba(255, 255, 255, 0.30);
-  --glass-bg-strong: rgba(255, 255, 255, 0.45);
-  --glass-border: rgba(255, 255, 255, 0.40);
-  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.50);
-  --glass-shadow: 0 8px 32px rgba(8, 145, 178, 0.10);
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --glass-bg-strong: rgba(255, 255, 255, 0.28);
+  --glass-border: rgba(255, 255, 255, 0.28);
+  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  --glass-shadow: 0 8px 32px rgba(8, 145, 178, 0.08);
   --glass-blur: 12px;
 }
 
@@ -155,43 +155,68 @@ body.theme-light {
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  padding: 0;
+/* Stationary Sea Background Layer:
+   Pinned firmly to viewport (position: fixed) so it never moves when scrolling.
+   Content and frosted glass cards glide smoothly over it, dynamically blurring the sea image underneath. */
+.sea-bg-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: -10;
+  pointer-events: none;
+  background-color: var(--color-bg);
   background-image: 
     var(--bg-overlay-light),
     url('/data/pic/sea_background.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: center center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
-  min-height: 100vh;
-  color: var(--color-text);
-  font-family: var(--font-sans);
-  font-size: 16px;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -webkit-tap-highlight-color: transparent;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 @media (prefers-color-scheme: dark) {
-  body {
+  .sea-bg-fixed {
     background-image: 
       var(--bg-overlay-dark),
       url('/data/pic/sea_background.jpg');
   }
 }
 
-body.theme-dark {
+body.theme-dark .sea-bg-fixed {
   background-image: 
     linear-gradient(135deg, rgba(11, 31, 42, 0.72) 0%, rgba(17, 48, 61, 0.68) 100%),
     url('/data/pic/sea_background.jpg') !important;
 }
 
-body.theme-light {
+body.theme-light .sea-bg-fixed {
   background-image: 
-    linear-gradient(135deg, rgba(246, 251, 252, 0.40) 0%, rgba(224, 244, 248, 0.35) 100%),
+    linear-gradient(135deg, rgba(246, 251, 252, 0.30) 0%, rgba(224, 244, 248, 0.25) 100%),
     url('/data/pic/sea_background.jpg') !important;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  min-height: 100vh;
+  min-height: 100dvh;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
 }
 
 h1, h2, h3, h4, p {
@@ -505,6 +530,9 @@ a {
   flex-direction: column;
   gap: 6px;
   margin-bottom: 16px;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .form-label {
@@ -529,6 +557,87 @@ a {
   font-size: 16px; /* Prevents mobile browser zoom */
   transition: border-color 150ms ease, box-shadow 150ms ease;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+input[type="date"].form-input {
+  -webkit-appearance: none;
+  appearance: none;
+  min-height: 44px;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   Trip Dates Range Component (Responsive & Mobile-first)
+   ========================================================================== */
+
+.trip-dates-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 12px;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+@media (min-width: 520px) {
+  .trip-dates-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+}
+
+.trip-date-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.trip-date-label {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.trip-date-label svg,
+.trip-date-label i {
+  color: var(--color-primary);
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.trip-date-input {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  min-height: 44px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 15px;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.trip-date-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
 }
 
 .form-textarea {
